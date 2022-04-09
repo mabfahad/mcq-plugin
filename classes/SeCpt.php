@@ -9,6 +9,54 @@ class SeCpt
 
     function custom_post_type()
     {
+        // Set UI labels for Quizzes
+        $labels = array(
+            'name'               => _x('Quizzes', 'se-mcq'),
+            'singular_name'      => _x('Quiz', 'se-mcq'),
+            'menu_name'          => __('Quizzes', 'se-mcq'),
+            'parent_item_colon'  => __('Parent Quiz', 'se-mcq'),
+            'all_items'          => __('All Quizzes', 'se-mcq'),
+            'view_item'          => __('View Quiz', 'se-mcq'),
+            'add_new_item'       => __('Add New Quiz', 'se-mcq'),
+            'add_new'            => __('Add New Quiz', 'se-mcq'),
+            'edit_item'          => __('Edit Quiz', 'se-mcq'),
+            'update_item'        => __('Update Quiz', 'se-mcq'),
+            'search_items'       => __('Search Quiz', 'se-mcq'),
+            'not_found'          => __('Not Found', 'se-mcq'),
+            'not_found_in_trash' => __('Not found in Trash', 'se-mcq'),
+        );
+
+        // Set other options for Quizzes
+
+        $args = array(
+            'label'               => __('quiz', 'se-mcq'),
+            'description'         => __('Quizzes', 'se-mcq'),
+            'labels'              => $labels,
+            // Features this CPT supports in Post Editor
+            'supports'            => array('title', 'editor'),
+            /* A hierarchical CPT is like Pages and can have
+            * Parent and child items. A non-hierarchical CPT
+            * is like Posts.
+            */
+            'hierarchical'        => false,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_nav_menus'   => true,
+            'show_in_admin_bar'   => true,
+            'menu_position'       => 5,
+            'can_export'          => true,
+            'has_archive'         => false,
+            'exclude_from_search' => true,
+            'publicly_queryable'  => false,
+            'capability_type'     => 'post',
+            'show_in_rest'        => true,
+
+        );
+
+        // Registering your Custom Post Type
+        register_post_type('quiz', $args);
+
         // Set UI labels for Custom Post Type
         $labels = array(
             'name'               => _x('Questions', 'se-mcq'),

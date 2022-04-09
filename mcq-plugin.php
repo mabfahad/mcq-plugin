@@ -34,7 +34,7 @@ function deactivate_semcq() {
     SemcqDeactivator::deactivate();
 }
 
-// Class files load
+// Autoload files load
 $classes = glob(plugin_dir_path( __FILE__ ).'autoload/*.php');
 if ($classes) {
 	foreach ($classes as $class) {
@@ -49,3 +49,24 @@ if ($classes) {
 		require_once $class;
 	}
 }
+
+// API files load
+$classes = glob(plugin_dir_path( __FILE__ ).'apis/*.php');
+if ($classes) {
+	foreach ($classes as $class) {
+		require_once $class;
+	}
+}
+
+
+
+
+/**
+ * Quiz Widget Init
+ */
+
+
+function quizwidget_register(){
+	register_widget('QuizWidget');
+}
+add_action('widgets_init','quizwidget_register');

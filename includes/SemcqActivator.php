@@ -2,8 +2,7 @@
 
 class SemcqActivator
 {
-    public static function activate()
-    {
+    public static function activate() {
 
     }
 
