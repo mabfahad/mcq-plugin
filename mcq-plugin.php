@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 register_activation_hook( __FILE__, 'activate_semcq' );
 function activate_semcq() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/Swca_Activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/SemcqActivator.php';
     SemcqActivator::activate();
 }
 
@@ -30,7 +30,7 @@ function activate_semcq() {
  */
 register_deactivation_hook( __FILE__, 'deactivate_semcq' );
 function deactivate_semcq() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/SemcqActivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/SemcqDeactivator.php';
     SemcqDeactivator::deactivate();
 }
 
@@ -43,7 +43,7 @@ if ($classes) {
 }
 
 // Class files load
-$classes = glob(plugin_dir_path( __FILE__ ).'controller/*.php');
+$classes = glob(plugin_dir_path( __FILE__ ).'classes/*.php');
 if ($classes) {
 	foreach ($classes as $class) {
 		require_once $class;
