@@ -14,6 +14,10 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
+function se_mcq_load_textdomain() {
+	load_plugin_textdomain( 'se-mcq', false, plugin_dir_path( __FILE__ ) . "languages/" );
+}
+add_action( 'plugins_loaded', 'se_mcq_load_textdomain' );
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-semcq-activator.php
@@ -70,3 +74,19 @@ function quizwidget_register(){
 	register_widget('QuizWidget');
 }
 add_action('widgets_init','quizwidget_register');
+
+/**
+ * Add a sidebar.
+ */
+function quiz_sidebar() {
+    register_sidebar( array(
+        'name'          => __( 'Quizzes', 'se-mcq' ),
+        'id'            => 'quizz-sidebar',
+        'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'se-mcq' ),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</li>',
+        'before_title'  => '<h2 class="widgettitle">',
+        'after_title'   => '</h2>',
+    ) );
+}
+add_action( 'widgets_init', 'quiz_sidebar' );

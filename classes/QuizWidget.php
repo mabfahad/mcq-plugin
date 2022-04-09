@@ -11,7 +11,7 @@ class QuizWidget extends WP_Widget
 	}
 
 	public function form($instance) {
-        $title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'New title', 'se-mcq' );
+        $title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'All Quizzes', 'se-mcq' );
         ?>
         <p>
             <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
@@ -32,15 +32,8 @@ class QuizWidget extends WP_Widget
 			?>
             <div class="quizwidget <?php echo esc_attr( $args['id'] ); ?>">
                 <?php
-                $args = array(
-                    'post_type' => 'quiz',
-                    'post_status' => 'publish',
-                    'posts_per_page' => -1,
-                    'orderby' => 'date',
-                    'order' => 'DESC',
-                );
-                $quizzes = get_posts( $args );
-                print_r($quizzes);
+                $quiz = new Quiz();
+                $quiz->display();
                 ?>
             </div>
 			<?php
