@@ -91,6 +91,7 @@ class QuizApi
         $response = new WP_REST_Response( $results );
         $response->set_status( 200 );
         $response->set_headers( array( 'Cache-Controls' => 'no-cache' ) );
+        return $response;
     }
 
 }
